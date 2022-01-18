@@ -1,0 +1,30 @@
+{% extends "home/index.html" %}
+{% block content %}
+
+<main class="container my-5">
+    <div class="fs-2">Login</div>
+    <br>
+    <form method="post" class="form-group">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Login" class="btn btn-outline-success">
+        <input type="hidden" name="next" value="{{ next }}" />
+    </form>
+</main>
+
+
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+{% if next %}
+{% if user.is_authenticated %}
+<p>Your account doesn't have access to this page. To proceed,
+    Please login with an account that has access.
+</p>
+{% else %}
+<p>Please login to post to the site.</p>
+{% endif %}
+{% endif %}
+
+{% endblock %}

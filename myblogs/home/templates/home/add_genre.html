@@ -1,0 +1,21 @@
+{% extends 'home/index.html' %}
+
+{% block title %} create genre {% endblock %}
+
+{% block content %}
+    <main class="container my-5">
+
+        <div class="fs-2">Add blogpost genre</div>
+        <br>
+        <div class="form-create">
+            <form method='POST'>
+                {% csrf_token %}  <!--protect from running xss attack-->
+                {{ form.as_p}}
+                <input type="submit" class="btn btn-outline-primary" value="Add">
+            </form>
+        </div>
+ 
+
+    </main>
+   
+{% endblock %}

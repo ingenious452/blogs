@@ -1,0 +1,24 @@
+{% extends 'home/index.html' %}
+
+{% block title %} create blogpost {% endblock %}
+
+{% block content %}
+    <main class="container my-5">
+
+        <div class="fs-2">Add blog post</div>
+        <br>
+        <div class="form-create">
+            <form method='POST'>
+                {% csrf_token %}  <!--protect from running xss attack-->
+                {{ form.as_p }}
+                {{ form.media }}
+                <input type="submit" class="btn btn-outline-success" value="Publish">
+                <a href="{% url 'home:add-genre' %}?next={% url 'home:add-post' %}" class="btn btn-outline-dark">Add Genre</a>
+
+            </form>
+        </div>
+        
+
+    </main>
+   
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends 'home/index.html' %}
+
+{% block title %}
+{{ blogpost.title }}
+{% endblock %}
+
+
+{% block content %}
+<main class="container my-5">
+    <article class="blog-post">
+        <div class="blog-post-title fs-2 text-center mb-3">
+            <span class="text-decoration-underline">{{ blogpost.title }}</span>
+        </div>
+
+        <div class="container mt-5 border-dark border-1 border-bottom pb-0">
+            <div class="row">
+                <div class="col">
+                    <p class="blog-post-meta my-0 fst-normal">{{ blogpost.created_on }} by
+                        <a href="#">{{ blogpost.author }}</a>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p class="blog-post-meta fw-lighter fst-italic"><a href="{% url 'home:genre' blogpost.genre %}"
+                            class="link-dark">{{ blogpost.genre }}</a></p>
+                </div>
+                <div class="col col-lg-1">
+                    <a href="{% url 'home:edit-post' blogpost.pk %}" class="link-dark text-decoration-none">
+                        <i class="bi bi-pencil-square"></i>
+                        edit</a>
+                </div>
+                <div class="col col-lg-1">
+                    <a href="{% url 'home:delete-post' blogpost.pk %}" class="link-danger text-decoration-none">
+                        <i class="bi bi-trash" style="color: rgb(245, 79, 79)"></i>
+                        Delete
+                    </a>
+                </div>
+            </div>
+        </div>
+        <p class="mt-4">{{ blogpost.post|safe|linebreaks }}</p>
+    </article>
+<!--     
+    <div class="container my-5 text-end">
+        <form action="{% url 'home:blogpost-like' blogpost.pk %}" method="post" class="d-inline">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-primary btn-sm">
+                <i class="bi bi-hand-thumbs-up " style="color: currentColor"></i>
+            </button>
+        </form>
+        <p>{{ total_likes }}</p>
+        <form action="{% url 'home:blogpost-like' blogpost.pk %}" method="post" class="d-inline">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-dark btn-sm">
+                <i class="bi bi-hand-thumbs-down " style="color:currentColor"></i>
+            </button>
+        </form>
+    </div> -->
+
+    <!-- <div>
+        <div class="container">
+            <form method="post" class="form-outline w-100">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" class="btn btn-primary btn-sm" value="Post comment">
+                <button type="button" class="btn btn-outline-primary btn-sm">Cancel</button>
+            </form>
+        </div>
+    </div> -->
+    <hr>
+    <br>
+    <!-- <div class="container mx-y">
+        <h3>Comments...</h3>
+        {% if not blogpost.comments.all %}
+            <p>No Comments</p>
+        {% else %}
+            <br>
+            <ul class="list-style-none">
+                {% for comment in blogpost.comments.all %}
+                <li class="fs-6">{{ comment.comment_post }} 
+                    <br>
+                        <span class="fst-italic text-decoration-underline">{{ comment.user }}</span> | 
+                        <span class="blog-post-meta fw-bold col align-self-start">{{ comment.created_on }}</span>
+                </li>
+                <br>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div> -->
+
+    <div class="container pagination">
+        <a href="{% url 'home:blogposts' %}" class="page-item fs-5 link-primary">
+            <i class="bi bi-arrow-left-circle" style="font-size: 2rem;"></i>
+        </a>
+    </div>
+
+
+</main>
+{% endblock %}

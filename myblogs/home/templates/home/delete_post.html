@@ -1,0 +1,23 @@
+{% extends 'home/index.html' %}
+
+{% block title %} delete posts {% endblock %}
+
+{% block content %}
+    <main class="container my-5">
+
+        <section class="py-5 text-center container">
+            <div class="row py-lg-5">
+              <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light">{{ blogpost.title }}</h1>
+                <p class="lead text-muted">You want to delete this post?</p>
+                <p>
+                    <form method='post' class='form-group my-2'>
+                        {% csrf_token %}
+                        <input type="submit" value="Remove" class="btn btn-outline-danger">
+                    </form>
+                </p>
+              </div>
+            </div>
+          </section>
+    </main>
+{% endblock %}

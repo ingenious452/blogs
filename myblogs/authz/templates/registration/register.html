@@ -1,0 +1,15 @@
+{% extends 'home/index.html' %}
+
+{% block title %}user registeration{% endblock %}
+
+{% block content %}
+    <main class="container my-5">
+        <div class="fs-2">Register</div> 
+        <br>
+        <form method="post" class="form-group">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Register" class="btn btn-outline-primary">
+        </form>
+    </main>
+{% endblock %}

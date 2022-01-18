@@ -1,0 +1,16 @@
+{% extends 'home/index.html' %}
+
+{% block title %} Edit post {% endblock %}
+
+{% block content %}
+    <main class="container my-5">
+        <div class="fs-2">Edit Post</div> 
+        <br>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.media }}
+            {{ form.as_p }}
+            <input type="submit" value="update" class="btn btn-outline-success">
+        </form>
+    </main>
+{% endblock %}
